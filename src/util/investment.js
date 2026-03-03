@@ -10,6 +10,7 @@ export function calculateInvestmentResults({
   expectedReturn,
   duration,
 }) {
+
   const annualData = [];
   let investmentValue = initialInvestment;
 
@@ -23,7 +24,6 @@ export function calculateInvestmentResults({
       annualInvestment: annualInvestment, // investment added in this year
     });
   }
-
   return annualData;
 }
 
@@ -32,7 +32,7 @@ export function calculateInvestmentResults({
 // Example Usage: formatter.format(1000) => yields "$1,000"
 export const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
-  currency: 'USD',
+  currency: 'EUR',
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
 });
