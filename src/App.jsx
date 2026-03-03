@@ -12,23 +12,32 @@ function App() {
     duration: 10,
   });
 
+  let inputIsValid = true;
+
   function changeInputHandler(event) {
-    setUserInput((prevInputData) => {
-      return {
-        ...prevInputData,
-        [event.target.id]: +event.target.value,
-      };
-    });
+    if (event.target.id === "duration" && event.target.value < 1) {
+      inputIsValid = false;
+    } else {
+      setUserInput((prevInputData) => {
+        return {
+          ...prevInputData,
+          [event.target.id]: +event.target.value,
+        };
+      });
+    }
   }
 
   const result = calculateInvestmentResults({
-    ...userInput
-  })
+    ...userInput,
+  });
 
   return (
     <>
       <UserInput userInputdata={userInput} onInputChange={changeInputHandler} />
-      <Result resultData={result}/>
+      {inputIsValid
+      ?
+      <Result resultData={result} />
+    :<p className="center">Please enter duration greater than 0</p>}
     </>
   );
 }
